@@ -1,0 +1,14 @@
+{
+    "nfseApp": {
+        "NaturezaOperacao": {
+            "null": "",
+            "TRIBUTACAO_MUNICIPAL": "Tributação municipal",
+            "EXPORTACAO": "Exportação",
+            "NAO_INCIDENCIA": "Tributação fora do município",
+            "EXIGIBILIDADE_SUSPENSA_PROCESSO_ADMINISTRATIVO": "Exigibilidade suspensa por processo administrativo",
+            "EXIGIBILIDADE_SUSPENSA_DECISAO_JUDICIAL": "exigibilidade suspensa por decisão judicial",
+            "IMUNIDADE": "Imunidade",
+            "ISENCAO": "Isênção"
+        }
+    }
+}

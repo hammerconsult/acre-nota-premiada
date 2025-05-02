@@ -1,0 +1,10 @@
+{
+    "nfseApp": {
+        "SituacaoPremioUsuario": {
+            "null": "Aguardando Sorteio",
+            "NAO_FOI_DESSA_VEZ": "Não Foi Dessa Vez",
+            "CUPOM_PREMIADO": "Bilhete Premiado",
+            "PROXIMO_SORTEIO": "Próximo Sorteio"
+        }
+    }
+}

@@ -1,0 +1,321 @@
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <div class="col-lg-12" ng-show="!novaReclamacao && isAuthenticated">
+                    <div class="col-lg-12">
+                        <h2>Suas Reclamações</h2>
+                    </div>
+                    <div class="col-lg-12 m-t-md">
+                        <table class="table ">
+                            <tr>
+                                <th>Data</th>
+                                <th>Tipo</th>
+                                <th>Situação</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-show="!reclamacoes || reclamacoes.length ==0">
+                                <td class="text-center" colspan="4">
+                                    Nenhuma reclamaçao aberta
+                                </td>
+                            </tr>
+                            <tr ng-repeat-start="reclamacao in reclamacoes">
+                                <td>{{reclamacao.dataEnvio | date}}</td>
+                                <td>{{reclamacao.assunto}}</td>
+                                <td>{{reclamacao.situacao == 'ABERTO' ? 'Aguardando Resposta' : 'Respondida'}}</td>
+                                <td class="text-right">
+                                    <a ng-click="reclamacao.detalhes = !reclamacao.detalhes">
+                                        <i class="fa fa-angle-down"></i> Ver Detalhes
+                                    </a>
+                                </td>
+                            </tr>
+                            <tr ng-repeat-end="">
+                                <td colspan="4">
+                                    <table class="table" ng-show="reclamacao.detalhes">
+                                        <tr>
+                                            <th>CPF/CNPJ - Prestador</th>
+                                            <th>Nome/Razão Social - Prestador</th>
+                                            <th>Data do Serviço</th>
+                                            <th>Valor do Serviço</th>
+                                            <th>Descrição do Serviço</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{reclamacao.dadosReclamado.cpfCnpj}}</td>
+                                            <td>{{reclamacao.dadosReclamado.nomeRazaoSocial}}</td>
+                                            <td>{{reclamacao.dataServico | date: 'dd/MM/yyyy' : '+0000'}}</td>
+                                            <td>{{reclamacao.valorServico | currency: 'R$ '}}</td>
+                                            <td>{{reclamacao.descricaoServico}}</td>
+                                        </tr>
+                                    </table>
+
+                                    <table class="table" ng-show="reclamacao.detalhes">
+                                        <tr>
+                                            <th>
+
+                                            </th>
+                                        </tr>
+
+                                        <tr>
+                                            <th>Mensagem</th>
+                                        </tr>
+                                        <tr>
+                                            <td>{{reclamacao.mensagem}}</td>
+                                        </tr>
+                                        <tr>
+                                            <th>Resposta</th>
+                                        </tr>
+                                        <tr>
+                                            <td ng-bind-html="trustAsHtml(reclamacao.resposta)"></td>
+                                        </tr>
+                                    </table>
+                                </td>
+
+                            </tr>
+                            <tr>
+                                <td class="text-center" colspan="4">
+                                    <a ng-click="novaReclamacao =true">
+                                        <i class="fa fa-plus-circle"></i>
+                                        Registar uma nova reclamação
+                                    </a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+                <div class="col-lg-12" ng-show="novaReclamacao">
+                    <form name="form" role="form" ng-submit="save()">
+                        <div class="row m-t-sm">
+                            <div class="col-lg-12">
+                                <h2>Qual o Motivo da Reclamação?</h2>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                <a class="btn btn-primary btn-outline btn-block {{tipo ==tipos[0] ? 'active':'' }}"
+                                   ng-click="ecolherTipo(tipos[0])">
+                                    <i class="fa  {{tipo ==tipos[0] ? 'fa-check':'fa-circle-o' }}"></i>
+                                    Nota Fiscal Não Emitida
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                <a class="btn btn-primary btn-outline btn-block  {{tipo ==tipos[1] ? 'active':'' }}"
+                                   ng-click="ecolherTipo(tipos[1])">
+                                    <i class="fa {{tipo ==tipos[1] ? 'fa-check':'fa-circle-o' }}"></i>
+                                    Nota Fiscal Cancelada
+                                </a>
+                            </div>
+                            <div class="col-md-4 col-sm-12 col-xs-12 form-group">
+                                <a class="btn btn-primary btn-outline btn-block  {{tipo ==tipos[2] ? 'active':'' }}"
+                                   ng-click="ecolherTipo(tipos[2])">
+                                    <i class="fa {{tipo ==tipos[2] ? 'fa-check':'fa-circle-o' }}"></i>
+                                    Nota Fiscal com Dados Incorretos
+                                </a>
+                            </div>
+                        </div>
+                        <div class="row m-t-sm" ng-show="faleConosco.dadosReclamado">
+                            <div class="col-lg-12">
+                                <h2>Quem foi o Prestador do Serviço?</h2>
+                            </div>
+                            <div class="col-md-4 form-group">
+                                <label for="cpfCnpj" class="control-label">CPF ou CNPJ </label>
+                                <input type="text" class="form-control"
+                                       name="cpfCnpj"
+                                       id="cpfCnpj"
+                                       placeholder="Informe o CPF ou CNPJ do Prestador"
+                                       ui-br-cpfcnpj-mask=""
+                                       ng-change="preLoadPrestador()"
+                                       ng-model="faleConosco.dadosReclamado.cpfCnpj">
+
+                                <div ng-show="form.cpfCnpj.$invalid">
+                                    <p class="help-block"
+                                       ng-show="form.cpfCnpj.$error.cpf || form.cpfCnpj.$error.cnpj">
+                                        CPF/CNPJ inválido
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="col-md-8 form-group">
+                                <label for="nomeRazaoSocial" class="control-label">Nome ou Razão Social
+                                    <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" name="nomeRazaoSocial" id="nomeRazaoSocial"
+                                       placeholder="Informe o Nome ou Razão Social do Prestador"
+                                       required
+                                       ng-model="faleConosco.dadosReclamado.nomeRazaoSocial">
+                            </div>
+                        </div>
+                        <div class="row m-t-md" ng-show="(faleConosco.dadosReclamado.cpfCnpj || faleConosco.dadosReclamado.nomeRazaoSocial)">
+                            <div class="col-lg-12">
+                                <h2>Qual foi o Serviço Prestado?</h2>
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label class="control-label">Data do Serviço</label>
+                                <input type="date"
+                                       class="form-control"
+                                       name="dataServico"
+                                       ng-model="faleConosco.dataServico"
+                                       required>
+                                <p class="help-block"
+                                   ng-show="emissao.dataServico.$invalid">
+                                    Informe a data que o serviço foi prestado
+                                </p>
+                            </div>
+                            <div class="form-group col-md-3" ng-if="tipo != tipos[0]">
+                                <label class="control-label" for="servico_numero_nota">Número da Nota</label>
+                                <input type="number" class="form-control"
+                                       name="servico_numero_nota"
+                                       required
+                                       id="servico_numero_nota"
+                                       ng-model="faleConosco.numeroNota">
+                                <div class="margin">
+                                    <div ng-show="form.servico_numero_nota.$invalid">
+                                        <p class="help-block">
+                                            Infrome o número da nota
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-3" ng-if="tipo == tipos[0]">
+                                <label class="control-label">Valor do Serviço</label>
+                                <input type="text" class="form-control"
+                                       ui-money-mask=""
+                                       name="servico_valor_servico"
+                                       required
+                                       id="field_servico_valor_servico"
+                                       ng-model="faleConosco.valorServico">
+                                <div class="margin">
+                                    <div ng-show="form.servico_valor_servico.$invalid ||  faleConosco.valorServico <= 0">
+                                        <p class="help-block">
+                                            O valor inválido deve ser maior que ZERO (R$ 0,00)
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-6">
+                                <label class="control-label">Descrição
+                                    {{tipo == tipos[2] ? ' da Correção' : 'do Serviço'}}</label>
+
+                                <input type="text" class="form-control"
+                                       name="descricaoServico"
+                                       minlength="3"
+                                       required
+                                       maxlength="150"
+                                       id="descricaoServico"
+                                       ng-model="faleConosco.descricaoServico">
+                                <div class="margin">
+                                    <div ng-show="form.descricaoServico.$invalid">
+                                        <p class="help-block">
+                                            A descrição deve ter entre 3 e 150 caracteres
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-sm" ng-if="(faleConosco.dadosReclamado.cpfCnpj || faleConosco.dadosReclamado.nomeRazaoSocial) && !isAuthenticated">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>Quem foi o Tomador do Serviço?</h2>
+                                </div>
+                                <div class="col-md-4 form-group">
+                                    <label for="cpf" class="control-label">CPF<span
+                                            class="text-danger">*</span></label>
+                                    <input type="text" class="form-control"
+                                           name="cpf"
+                                           id="cpf"
+                                           placeholder="Informe seu CPF"
+                                           ui-br-cpf-mask=""
+                                           ng-change="preLoadTomador()"
+                                           ng-model="faleConosco.cpf"
+                                           required>
+
+                                    <div ng-show="form.cpf.$invalid">
+                                        <p class="help-block"
+                                           ng-show="form.cpf.$error.required">
+                                            Informe o CPF
+                                        </p>
+
+                                        <p class="help-block"
+                                           ng-show="form.cpf.$error.cpf">
+                                            CPF inválido
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-8 form-group">
+                                    <label for="nome">Nome Completo<span
+                                            class="text-danger">*</span></label>
+
+                                    <input type="text" class="form-control" name="nome" id="nome"
+                                           placeholder="Informe seu nome completo"
+                                           required
+                                           minlength="3" maxlength="150"
+                                           ng-model="faleConosco.dadosReclamante.nomeRazaoSocial">
+
+                                    <div ng-show="form.nome.$invalid">
+                                        <p class="help-block">
+                                            Informe o seu nome completo
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6 form-group">
+                                    <label>E-mail <span class="text-danger">*</span></label>
+                                    <input type="email" class="form-control" name="email"
+                                           placeholder="informe o seu E-mail"
+                                           required
+                                           ng-model="faleConosco.dadosReclamante.email" minlength="5"
+                                           maxlength="100">
+                                    <div ng-show="form.email.$invalid">
+                                        <p class="help-block">
+                                            Informe o seu email
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label for="field_telefone">Telefone <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control" name="telefone"
+                                           id="field_telefone"
+                                           placeholder="Informe o Telefone"
+                                           required
+                                           ui-br-phone-number
+                                           ng-model="faleConosco.dadosReclamante.telefone">
+                                </div>
+                                <div class="col-md-3 form-group">
+                                    <label for="field_contato">Contato </label>
+                                    <input type="text" class="form-control" name="telefone"
+                                           id="field_contato"
+                                           placeholder="Informe o Contato"
+                                           ui-br-phone-number
+                                           ng-model="faleConosco.dadosReclamante.celular">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="m-t-sm" ng-show="(faleConosco.dadosReclamado.cpfCnpj || faleConosco.dadosReclamado.nomeRazaoSocial)">
+                            <div class="row">
+                                <div class="col-lg-12">
+                                    <h2>Reclamação ou Denúncia</h2>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-12 form-group">
+                                    <textarea type="text" class="form-control" name="mensagem"
+                                              placeholder="Informe a Reclamação ou Denúncia"
+                                              required
+                                              ng-model="faleConosco.mensagem"
+                                              maxlength="3000"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-md">
+                            <div class="col-md-2 form-group">
+                                <button type="submit"
+                                        ng-if="tipo"
+                                        ng-disabled="form.$invalid"
+                                        class="btn btn-info btn-block">
+                                    <i class="fa fa-save"></i>&nbsp;
+                                    Enviar
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

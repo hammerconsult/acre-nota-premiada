@@ -1,0 +1,256 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioBilhetesSorteio" pageWidth="595" pageHeight="842" columnWidth="535" leftMargin="30" rightMargin="30" topMargin="20" bottomMargin="20" whenResourceMissingType="Empty" uuid="8dc60ce0-6fe5-4186-a20f-55b537e345c9">
+	<property name="ireport.scriptlethandling" value="0"/>
+	<property name="ireport.encoding" value="UTF-8"/>
+	<property name="ireport.zoom" value="1.4641000000000006"/>
+	<property name="ireport.x" value="15"/>
+	<property name="ireport.y" value="43"/>
+	<import value="net.sf.jasperreports.engine.*"/>
+	<import value="java.util.*"/>
+	<import value="net.sf.jasperreports.engine.data.*"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="IMAGEM" class="java.io.InputStream"/>
+	<parameter name="MUNICIPIO" class="java.lang.String"/>
+	<parameter name="SECRETARIA" class="java.lang.String"/>
+	<parameter name="DEPARTAMENTO" class="java.lang.String"/>
+	<parameter name="ENDERECO" class="java.lang.String"/>
+	<parameter name="QRCODE" class="java.io.InputStream"/>
+	<parameter name="SUBREPORT_PREMIOS" class="net.sf.jasperreports.engine.JasperReport"/>
+	<parameter name="SUBREPORT_BILHETES" class="net.sf.jasperreports.engine.JasperReport"/>
+	<queryString language="SQL">
+		<![CDATA[]]>
+	</queryString>
+	<field name="sorteio" class="br.com.webpublico.domain.SorteioDTO"/>
+	<field name="premios" class="java.util.List"/>
+	<field name="bilhetes" class="java.util.List"/>
+	<field name="campanha" class="br.com.webpublico.domain.CampanhaDTO"/>
+	<title>
+		<band height="87" splitType="Stretch">
+			<image onErrorType="Blank">
+				<reportElement x="11" y="11" width="55" height="60" uuid="156403fd-186c-4c43-b5d6-0f54f7cadab2"/>
+				<imageExpression><![CDATA[$P{IMAGEM}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="90" y="25" width="429" height="14" uuid="0cb53e33-9e74-4159-a6c4-4525de58b800"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SECRETARIA}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="11" width="429" height="14" uuid="f1f90d39-24dd-4a00-8e1a-563716ebf155"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MUNICIPIO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="90" y="39" width="429" height="18" uuid="8e87fd40-adbf-44d9-9714-dbd9208920fe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ENDERECO}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="1" height="87" uuid="268e6dbe-9e46-44a6-a7d6-5b24ae68de48"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="78" y="0" width="1" height="87" uuid="d918d62a-92e8-4e99-869f-1699a3adae0c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="534" y="0" width="1" height="87" uuid="645493f8-37c7-467d-9f01-61386bd58c4d"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="0" width="535" height="1" uuid="fb985762-955c-4d18-bdda-b49c7193fa3c"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="86" width="535" height="1" uuid="00ebb30d-39bb-4920-a2d1-da2f9232a3bd"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="90" y="60" width="429" height="18" uuid="8b7ceca0-300f-49e4-b37e-1eecea79ce42"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="Arial" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA["BILHETES DO SORTEIO"]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band splitType="Stretch"/>
+	</columnHeader>
+	<detail>
+		<band height="85">
+			<textField>
+				<reportElement x="105" y="10" width="429" height="15" uuid="5c31f693-1b74-4d5b-8daf-0ec1c680b6e2"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getNumero() + " - " + $F{sorteio}.getDescricao()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="10" width="103" height="15" uuid="426cf266-301b-4236-84c2-0caae92a86e6"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Sorteio:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="26" width="104" height="15" uuid="5781ed42-51c2-4bc2-b35a-63582a6a23a1"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Período de:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="105" y="26" width="52" height="15" uuid="c8040db2-c513-4a52-ab53-ea9becf2cee5"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{campanha}.getInicio()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="157" y="26" width="24" height="15" uuid="02be9c9d-c272-4457-a038-deec25fa30d2"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="181" y="26" width="51" height="15" uuid="0ad995c9-fb18-4977-822d-95fa99317563"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{campanha}.getFim()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="1" y="42" width="103" height="15" uuid="a760d463-2de9-497c-acc4-e8f9cdbcd617"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Notas Emitidas de:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="181" y="42" width="51" height="15" uuid="c9414eb5-56e6-4bdb-ae28-cb40c03742a4"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getFimEmissaoNotaFiscal()]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="105" y="42" width="52" height="15" uuid="98afe4ff-96e7-4436-87c8-f396e006dd91"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getInicioEmissaoNotaFiscal()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="157" y="42" width="24" height="15" uuid="a9647e6e-d732-473a-9f5b-3991c1833f99"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[à]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="1" y="58" width="103" height="15" uuid="bd4f0129-38f6-41f3-883f-59e98cf5abfe"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Data Sorteio:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="105" y="58" width="52" height="15" uuid="b7d873b2-bf25-438a-89a5-d6b52b85ca94"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getDataSorteio()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="307" y="41" width="158" height="15" uuid="08aa31de-1cc3-46af-b0f7-f9a880eaddc7"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Divulgação dos bilhetes:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="465" y="41" width="69" height="15" uuid="86869cd4-4fbe-40e9-81b8-9f5c31248029"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getDataDivulgacaoCupom()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="249" y="56" width="216" height="15" uuid="89157ea9-a6be-4749-a72e-91c1791e1d42"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Divulgação do resultado do sorteio em:]]></text>
+			</staticText>
+			<textField pattern="dd/MM/yyyy" isBlankWhenNull="true">
+				<reportElement x="465" y="56" width="69" height="15" uuid="603efc72-fe84-43f1-8ad1-044772a4058d"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{sorteio}.getDataDivulgacaoSorteio()]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="15">
+			<subreport>
+				<reportElement x="1" y="0" width="534" height="15" uuid="9639bd35-2e0c-42e2-873e-f2af3e401cab"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{premios})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_PREMIOS}]]></subreportExpression>
+			</subreport>
+		</band>
+		<band height="15">
+			<subreport>
+				<reportElement x="1" y="0" width="534" height="15" uuid="363df1ba-1920-4041-ac73-58ea2c313a19"/>
+				<dataSourceExpression><![CDATA[new net.sf.jasperreports.engine.data.JRBeanCollectionDataSource($F{bilhetes})]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_BILHETES}]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="10">
+			<textField evaluationTime="Report">
+				<reportElement x="510" y="0" width="24" height="10" uuid="997f15b0-55a0-416a-befb-88dbde177daa"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[" " + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="458" y="0" width="52" height="10" uuid="dbcb1966-6d3d-42e7-8ecf-9a705f78c88b"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Arial" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Página "+$V{PAGE_NUMBER}+" de"]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="1" y="0" width="89" height="10" uuid="f841593e-fad8-442c-99f1-ade9a011a5bd"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="Arial" size="8" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Emitido em: " + new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date())]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageFooter>
+</jasperReport>

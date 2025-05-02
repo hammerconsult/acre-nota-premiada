@@ -1,0 +1,44 @@
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <div class="col-lg-4 p-lg">
+                    <div class="panel panel-success">
+                        <div class="panel-heading">
+                            <i class="fa fa-tag"></i>
+                            Clique no nome do arquivo para ver o conteúdo
+                        </div>
+                        <div class="panel-body">
+                            <table class="table">
+                                <tr class="{{legislacaoSelecionada.id == legislacao.id ? 'info' : ''}}"
+                                    ng-click="buscarArquivo(legislacao)" style="cursor: pointer"
+                                    ng-repeat="legislacao in legislacoes">
+                                    <td>
+                                        {{legislacao.descricao.split(".")[0]}}
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="col-lg-8 p-lg">
+                    <div class="row">
+                        <div class="col-md-12 text-muted text-center">
+                            <small>Não consegue visualizar o arquivo? <a ng-click="baixarAnexo()"> Clique aqui</a> para
+                                fazer
+                                download
+                            </small>
+                        </div>
+                    </div>
+                    <div class="row m-t-md">
+                        <div class="col-md-12 text-center">
+                            <embed ng-show="conteudo" ng-src="{{conteudo}}"
+                                   style="min-width: 100%; min-height: 500px;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

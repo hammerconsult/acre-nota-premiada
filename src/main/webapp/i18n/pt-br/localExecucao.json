@@ -1,0 +1,10 @@
+{
+    "nfseApp": {
+        "LocalExecucao": {
+            "null": "",
+            "LOCAL": "no Local",
+            "DOMICIO_PRESTADOR": "no domicilio do prestador",
+            "ESTABELECIMENTO_PRESTADOR": "no estabelecimento do prestador"
+        }
+    }
+}

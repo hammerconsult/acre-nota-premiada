@@ -1,0 +1,33 @@
+<div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+            ng-click="close()">&times;
+    </button>
+    <h4 class="modal-title">{{comunicado.titulo}}</h4>
+</div>
+
+<div class="modal-body">
+    <div ng-show="conteudo">
+        <div class="row">
+            <div class="col-md-12 text-muted text-center">
+                <small>Não consegue visualizar o arquivo? <a ng-click="baixar()"> Clique aqui</a> para fazer
+                    download
+                </small>
+            </div>
+        </div>
+        <div class="row m-t-md">
+            <div class="col-md-12 text-center">
+                <embed ng-show="conteudo" ng-src="{{conteudo}}"
+                       style="min-width: 100%; min-height: 500px;">
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal-footer">
+    <button type="button" class="btn btn-info"
+            data-dismiss="modal"
+            ng-click="close()">
+        <span class="fa fa-close"></span>&nbsp;
+        <span>Fechar</span>
+    </button>
+</div>

@@ -1,0 +1,230 @@
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <div class="row">
+                    <div class="col-md-12 m-t-sm">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <h4>
+                                    <i class="fa fa-list-ol"></i>
+                                    Sorteios
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 text-center" ng-show="!sorteios || sorteios.length ==0">
+                                    Nenhum sorteio disponível
+                                </div>
+                                <div class="col-md-12 table-responsive" ng-show="sorteios && sorteios.length >0">
+                                    <small class="pull-right text-muted">
+                                        *Clique no sorteio para vizualizar os seus bilhetes
+                                    </small>
+                                    <table class="table table-hover">
+                                        <tr>
+                                            <th></th>
+                                            <th class="text-center">Nº</th>
+                                            <th class="text-center">Descrição</th>
+                                            <th class="text-center">Data Sorteio</th>
+                                            <th class="text-center">Notas Emitidas</th>
+                                            <th class="text-center">Bilhetes</th>
+                                            <th class="text-center">Bilhetes Premiados</th>
+                                            <th class="text-center">Situação</th>
+                                            <th class="text-center">Notas</th>
+                                            <th class="text-center">Prêmios</th>
+                                        </tr>
+                                        <tr ng-repeat="sorteio in sorteios"
+                                            style="cursor: pointer"
+                                            ng-click="buscarCuponsDoSorteio(sorteio)"
+                                            class="{{sorteio.sorteio.id == sorteioSelecionado.sorteio.id ? 'active':''}} text-center">
+
+                                            <td class="{{sorteio.sorteio.situacao == 'ABERTO' ?
+                                    'warning text-warning' : sorteio.quantidadeCuponsPremiados > 0 ? 'success text-success' : 'info text-info'}}">
+
+                                                <i class="fa {{sorteio.sorteio.situacao == 'ABERTO' ?
+                                    'fa-hourglass-1' : sorteio.quantidadeCuponsPremiados > 0 ? 'fa-thumbs-up' : 'fa-thumbs-down'}} "></i>
+
+                                                <strong> {{sorteio.sorteio.situacao == 'ABERTO' ?
+                                                        'Próximo Sorteio' : sorteio.quantidadeCuponsPremiados > 0 ? 'Bilhete Premiado' : 'Não foi dessa vez'}}
+                                                </strong>
+                                            </td>
+                                            <td class="text-center">{{sorteio.sorteio.numero}}</td>
+                                            <td class="text-center">{{sorteio.sorteio.descricao}}</td>
+                                            <td class="text-center">
+                                                {{sorteio.sorteio.dataSorteio | date:'dd/MM/yyyy' : '+0000'}}
+                                            </td>
+                                            <td class="text-center">
+                                                {{sorteio.sorteio.inicioEmissaoNotaFiscal | date:'MM/yy' : '+0000'}}
+                                                à
+                                                {{sorteio.sorteio.fimEmissaoNotaFiscal | date:'MM/yy' : '+0000'}}
+                                            </td>
+                                            <td class="text-center">{{sorteio.quantidadeCupons}}</td>
+                                            <td class="text-center">{{sorteio.quantidadeCuponsPremiados}}</td>
+                                            <td class="text-center">{{'nfseApp.SituacaoSorteio.' + sorteio.sorteio.situacao | translate}}</td>
+                                            <td class="text-center">
+                                                <a ng-click="verNotasDoSorteio(sorteio)">
+                                                    <i class="fa fa-qrcode"></i>
+                                                </a>
+                                            </td>
+                                            <td ng-click="verPremiosDoSorteio(sorteio)" class="text-center">
+                                                <a>
+                                                    <i class="fa fa-trophy"></i>
+                                                </a>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" ng-show="sorteioSelecionado">
+                    <div class="col-md-12 m-t-md">
+                        <div class="panel panel-success">
+                            <div class="panel-heading">
+                                <h4>
+                                    <i class="fa fa-tag"></i>
+                                    Bilhetes do Sorteio <b>{{sorteioSelecionado.sorteio.numero}} -
+                                    {{sorteioSelecionado.sorteio.descricao}}</b>
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 no-margins no-padding text-right">
+                                    <small class="pull-right">*Clique no bilhete para vizualizar os seus
+                                        detalhes</small>
+                                </div>
+                                <div class="col-md-12 m-t-md text-center"
+                                     ng-show="!cupons || cupons.length == 0">
+                                    <span class="text-muted">Ainda não existem bilhetes para esse sorteio</span>
+                                </div>
+                                <div class="col-md-12 m-t-lg text-center">
+                                    <fieldset class="fieldset-cupons">
+                                        <ul id="lista-cupons" style="list-style-type: none;">
+                                            <li ng-repeat="cupom in cupons"
+                                                ng-click="verCupom(cupom)"
+                                                class="col-xs-2 col-sm-2 col-md-2 text-roboto"
+                                                style="display: list-item; cursor: pointer">
+                                                <img ng-if="cupom.premiado == 1"
+                                                     src="/assets/images/cupom-premiado.png"
+                                                     class="col-xs-12">
+                                                <img ng-if="cupom.premiado == 0"
+                                                     src="/assets/images/cupom-nao-premiado.png"
+                                                     class="col-xs-12">
+                                                <span>{{cupom.numero}}</span>
+                                            </li>
+                                        </ul>
+                                    </fieldset>
+                                </div>
+                                <div class="col-md-12 m-t-lg text-center">
+                                        <span class="text-muted">
+                                         Continue solicitando o CPF na nota sempre que tomar qualquer serviço e tenha cada vez mais chances de ganhar.
+                                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<script type="text/ng-template" id="notasPorSorteio.html">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true"
+                ng-click="cancel()">&times;
+        </button>
+        <h3 class="modal-title" id="impedir-title">
+            Notas do Sorteio <b>{{sorteio.numero}} - {{sorteio.descricao}}</b>
+        </h3>
+    </div>
+    <div class="modal-body" id="impedir-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="div-tabela-notas" class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="col-md-1">Número</th>
+                            <th class="col-md-1">Emissão</th>
+                            <th>CPF/CNPJ Prestador</th>
+                            <th>Nome/Razão Social Prestador</th>
+                            <th class="col-md-2 text-right">Total Serviços</th>
+                            <th class="col-md-1 text-center">Situação</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="notaFiscal in notas">
+                            <td>
+                                {{notaFiscal.numero}}
+                            </td>
+                            <td>
+                                {{notaFiscal.emissao | date: 'dd/MM/yyyy' : '+0000'}}
+                            </td>
+                            <td>
+                                {{notaFiscal.cpfCnpjPrestador | brCpfCnpj}}
+                            </td>
+                            <td>
+                                {{notaFiscal.nomePrestador}}
+                            </td>
+                            <td class="text-right">
+                                {{notaFiscal.totalServicos | currency: 'R$ '}}
+                            </td>
+                            <td class="text-center">
+                                <span class="label {{notaFiscal.situacao === 'CANCELADA' ? 'label-danger': 'label-primary'}}">
+                                {{'nfseApp.SituacaoNota.' + notaFiscal.situacao | translate}}
+                                </span>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+
+                    <span nfse-app-pagination></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>
+
+
+<script type="text/ng-template" id="premioPorSorteio.html">
+    <div class="modal-header">
+        <button type="button" class="close" aria-hidden="true"
+                ng-click="cancel()">&times;
+        </button>
+        <h3 class="modal-title" id="premio-title">
+            Premios do Sorteio <b>{{sorteio.numero}} - {{sorteio.descricao}}</b>
+        </h3>
+    </div>
+    <div class="modal-body" id="premio-body">
+        <div class="row">
+            <div class="col-lg-12">
+                <div id="div-tabela-premio" class="table-responsive">
+                    <table class="table table-striped table-hover">
+                        <thead>
+                        <tr>
+                            <th class="text-left">Descrição</th>
+                            <th class="text-center">Quantidade</th>
+                            <th class="text-right">Valor</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="premio in premios">
+                            <td class="text-left">
+                                {{premio.descricao}}
+                            </td>
+                            <td class="text-center">
+                                {{premio.quantidade}}
+                            </td>
+                            <td class="text-right">
+                                {{premio.valor | currency: 'R$ '}}
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <span nfse-app-pagination></span>
+                </div>
+            </div>
+        </div>
+    </div>
+</script>

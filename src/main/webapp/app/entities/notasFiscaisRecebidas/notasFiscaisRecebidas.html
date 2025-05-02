@@ -1,0 +1,117 @@
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <div class="row">
+                    <div class="col-md-4 m-t-sm">
+                        <div class="panel panel-primary" id="painel-resumo">
+                            <div class="panel-heading">
+                                <h4>
+                                    <i class="fa fa-list-ol"></i>
+                                    Resumo de Notas Fiscais
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 no-margins no-padding text-right">
+                                    <small class="pull-right">
+                                        *Clique no período para vizualizar suas notas fiscais recebidas
+                                    </small>
+                                </div>
+                                <table class="table table-hover">
+                                    <tr>
+                                        <th class="text-center">Período</th>
+                                        <th class="text-center">Quantidade</th>
+                                        <th class="text-center">Valor em Serviços</th>
+                                    </tr>
+                                    <tr ng-repeat="competencia in competencias"
+                                        class="{{competenciaSelecionada.ano == competencia.ano && competenciaSelecionada.mes == competencia.mes ? 'success': ''}}"
+                                        style="cursor: pointer"
+                                        ng-click="buscarNotasFiscaisPorCompetencia(competencia)">
+                                        <td class="text-center">{{competencia.mes}}/{{competencia.ano}}</td>
+                                        <td class="text-center">{{competencia.quantidade}}</td>
+                                        <td class="text-center">{{competencia.totalServicos | currency:'R$'}}</td>
+                                    </tr>
+                                </table>
+                                <div class="text-center">
+                                    <pagination total-items="5 * linksCompetencia.last"
+                                                ng-model="pageCompetencia"
+                                                ng-change="loadPageCompetencias(pageCompetencia)"
+                                                class="pagination-sm" previous-text="&lsaquo;" next-text="&rsaquo;"
+                                                first-text="&laquo;"
+                                                last-text="&raquo;"></pagination>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-8 m-t-sm">
+                        <div class="panel panel-success" id="painel-notas">
+                            <div class="panel-heading">
+                                <h4>
+                                    <i class="fa fa-list-ol"></i>
+                                    Notas do Período {{competenciaSelecionada.mes}}/{{competenciaSelecionada.ano}}
+                                </h4>
+                            </div>
+                            <div class="panel-body">
+                                <div class="col-md-12 text-center text-raleway"
+                                     ng-show="!notaFiscals || notaFiscals.length ==0">
+                                    Nenhuma nota emitida no período de
+                                    {{competenciaSelecionada.mes}}/{{competenciaSelecionada.ano}}
+                                </div>
+                                <div id="div-tabela-notas" class="table-responsive"
+                                     ng-show="notaFiscals && notaFiscals.length >0">
+                                    <table class="table table-striped table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th class="col-md-1">Número</th>
+                                            <th class="col-md-1">Emissão</th>
+                                            <th>CPF/CNPJ Prestador</th>
+                                            <th>Nome/Razão Social Prestador</th>
+                                            <th class="col-md-2 text-right">Total Serviços</th>
+                                            <th class="col-md-1 text-center">Situação</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat="notaFiscal in notaFiscals">
+                                            <td>
+                                                {{notaFiscal.numero}}
+                                            </td>
+                                            <td>
+                                                {{notaFiscal.emissao | date: 'dd/MM/yyyy': '+0000'}}
+                                            </td>
+                                            <td>
+                                                {{notaFiscal.cpfCnpjPrestador | brCpfCnpj}}
+                                            </td>
+                                            <td>
+                                                {{notaFiscal.nomePrestador}}
+                                            </td>
+                                            <td class="text-right">
+                                                {{notaFiscal.totalServicos | currency: 'R$ '}}
+                                            </td>
+                                            <td class="text-center">
+                                <span class="label {{notaFiscal.situacao === 'CANCELADA' ? 'label-danger': 'label-primary'}}">
+                                {{'nfseApp.SituacaoNota.' + notaFiscal.situacao | translate}}
+                                </span>
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+
+                                    <span nfse-app-pagination></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <a class="btn btn-success" ui-sref="home">
+                            <i class="fa fa-arrow-left"></i>
+                            Voltar
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

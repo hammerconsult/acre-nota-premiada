@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCuponsSorteio_Cupons" language="groovy" pageWidth="534" pageHeight="752" columnWidth="534" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="3261f6a7-8795-48ee-8dcd-85600b8adf7c">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="numero" class="java.lang.String"/>
+	<field name="numeroNotaFiscal" class="java.lang.Long"/>
+	<field name="cpfCnpjTomador" class="java.lang.String"/>
+	<field name="nomeRazaoSocialTomador" class="java.lang.String"/>
+	<field name="emissaoNotaFiscal" class="java.util.Date"/>
+	<field name="totalNotaFiscal" class="java.math.BigDecimal"/>
+	<field name="cpfCnpjTomadorParcial" class="java.lang.String"/>
+	<columnHeader>
+		<band height="30" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="0" width="100" height="14" uuid="bed602cd-de44-4d89-ada6-b3f7b337edd6"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Cupons]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="14" width="100" height="14" uuid="a396463f-f3ef-469b-9383-320838f80fb9"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Número]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="100" y="14" width="185" height="14" uuid="7fa9ed2e-862e-46bc-aa56-97b196920297"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Contribuinte]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="285" y="14" width="65" height="14" uuid="55e3d2c8-e3e1-4fa1-8fbf-24e6e1d25240"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nota]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="14" width="84" height="14" uuid="6bb8ab89-5c72-43e1-9816-ecd1129732df"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Emitida Em]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="14" width="100" height="14" uuid="0e641eb3-0f11-4506-927f-b7be0de41f0c"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Serviços]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="29" width="534" height="1" uuid="7f9ad66f-9b3b-4393-b5ae-9b6264bc0752"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="12" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="100" height="12" uuid="318d28be-5c39-4404-8b03-7813aabe3987"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numero}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###.###.***-**">
+				<reportElement x="100" y="0" width="185" height="12" uuid="c298cfbe-f65e-4e24-85ed-48e0faae9285"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cpfCnpjTomadorParcial}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="285" y="0" width="65" height="12" uuid="74e9568f-ebd9-49fa-a648-f95e4adb4670"/>
+				<textElement>
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{numeroNotaFiscal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy">
+				<reportElement x="350" y="0" width="84" height="12" uuid="d1448dc2-dd6b-46a1-9d8e-370d8bf6721d"/>
+				<textElement textAlignment="Center">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{emissaoNotaFiscal}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00" isBlankWhenNull="true">
+				<reportElement x="434" y="0" width="100" height="12" uuid="b226d1d3-7af6-4297-b6a5-37e158ce425e"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{totalNotaFiscal}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="40" splitType="Stretch">
+			<staticText>
+				<reportElement x="0" y="14" width="100" height="15" uuid="a5ee4221-7dc1-4940-9f62-b343925dc30e"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total de Bilhetes:]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="100" y="14" width="100" height="15" uuid="7662f899-8cc5-464e-a441-e4fb2cef3837"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="13" width="534" height="1" uuid="024a4609-885d-46b1-8c12-82f14a3dc283"/>
+			</line>
+		</band>
+	</summary>
+</jasperReport>

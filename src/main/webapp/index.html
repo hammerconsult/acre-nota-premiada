@@ -1,0 +1,334 @@
+<!doctype html>
+<html class="no-js" ng-app="nfseApp">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nota Premiada Rio Branco</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width">
+
+    <!-- build:css assets/css/angularPrint.css -->
+    <link media="print" rel="stylesheet" href="bower_components/angularPrint/angularPrint.css">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/bootstrap.css -->
+    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/font-awesome.css-->
+    <link rel="stylesheet" href="assets/font-awesome/css/font-awesome.css">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/animate.css-->
+    <link href="assets/css/animate.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/style.css-->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/documentation.css-->
+    <link href="assets/styles/documentation.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/angular-notify.css-->
+    <link href="assets/css/plugins/angular-notify/angular-notify.min.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/iCheck.css-->
+    <link href="assets/css/plugins/iCheck/custom.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/jquery-jvectormap.css-->
+    <link href="assets/css/plugins/jvectormap/jquery-jvectormap-2.0.2.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/ngImgCrop.css-->
+    <link href="assets/css/plugins/ngImgCrop/ng-img-crop.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/sweetalert.css-->
+    <link href="bower_components/sweetalert/dist/sweetalert.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/codemirror.css-->
+    <link href="bower_components/codemirror/lib/codemirror.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/font-awesome-animation.css-->
+    <link href="bower_components/font-awesome-animation/dist/font-awesome-animation.min.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/custom-sweetalert.css-->
+    <link href="assets/css/custom-sweetalert.css" rel="stylesheet">
+    <!-- endbuild -->
+
+    <!-- build:css assets/css/webpublico.css-->
+    <link href="assets/css/webpublico.css" rel="stylesheet">
+    <!-- endbuild -->
+</head>
+<body landing-scrollspy ng-controller="MainController" class="mini-navbar">
+
+<div class="custom-loading-spiner-holder fadeIn fadeOut" data-loading ng-cloak="">
+    <div class="loading-spiner">
+        <div class="sk-spinner sk-spinner-circle">
+            <div class="sk-circle1 sk-circle"></div>
+            <div class="sk-circle2 sk-circle"></div>
+            <div class="sk-circle3 sk-circle"></div>
+            <div class="sk-circle4 sk-circle"></div>
+            <div class="sk-circle5 sk-circle"></div>
+            <div class="sk-circle6 sk-circle"></div>
+            <div class="sk-circle7 sk-circle"></div>
+            <div class="sk-circle8 sk-circle"></div>
+            <div class="sk-circle9 sk-circle"></div>
+            <div class="sk-circle10 sk-circle"></div>
+            <div class="sk-circle11 sk-circle"></div>
+            <div class="sk-circle12 sk-circle"></div>
+        </div>
+    </div>
+</div>
+
+<!--[if lt IE 9]>
+<p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade
+    your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div ng-cloak="">
+    <div ui-view="navbar"></div>
+</div>
+
+<div id="topo" style="margin-top: 49px;" ng-cloak="">
+    <!-- Navigation -->
+    <div ui-view="menu" ng-cloak=""></div>
+    <!--&lt;!&ndash;&lt;!&ndash; Page wraper &ndash;&gt;&ndash;&gt;-->
+    <!--&lt;!&ndash;&lt;!&ndash; ng-class with current state name give you the ability to extended customization your view &ndash;&gt;&ndash;&gt;-->
+    <div id="page-wrapper" class="{{$state.current.data.specialClass}} {{$state.current.name}}">
+        <!--&lt;!&ndash; Page wrapper &ndash;&gt;-->
+        <!-- Main view  -->
+        <div id="content">
+            <div class="fadeIn animated" ui-view="header">
+            </div>
+            <div class="fadeIn animated" ui-view="content">
+            </div>
+        </div>
+        <!-- Footer -->
+        <div ui-view="footer"></div>
+    </div>
+</div>
+
+
+<!-- build:js app/vendor.js -->
+<!-- bower:js -->
+<script src="bower_components/jquery/dist/jquery.js"></script>
+<script src="bower_components/json3/lib/json3.js"></script>
+<script src="bower_components/angular/angular.js"></script>
+<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+<script src="bower_components/angular-resource/angular-resource.js"></script>
+<script src="bower_components/angular-cookies/angular-cookies.js"></script>
+<script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+<script src="bower_components/angular-translate/angular-translate.js"></script>
+<script src="bower_components/angular-translate-storage-cookie/angular-translate-storage-cookie.js"></script>
+<script src="bower_components/angular-translate-loader-partial/angular-translate-loader-partial.js"></script>
+<script src="bower_components/angular-dynamic-locale/src/tmhDynamicLocale.js"></script>
+<script src="bower_components/angular-local-storage/dist/angular-local-storage.js"></script>
+<script src="bower_components/angular-cache-buster/angular-cache-buster.js"></script>
+<script src="bower_components/ngInfiniteScroll/build/ng-infinite-scroll.js"></script>
+<script src="bower_components/br-validations/releases/br-validations.js"></script>
+<script src="bower_components/string-mask/src/string-mask.js"></script>
+<script src="bower_components/angular-breadcrumb/release/angular-breadcrumb.js"></script>
+<script src="bower_components/angular-notify/dist/angular-notify.js"></script>
+<script src="bower_components/ng-file-upload/ng-file-upload.js"></script>
+<script src="bower_components/br-masks/releases/br-masks.js"></script>
+<script src="bower_components/ng-idle/angular-idle.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.js"></script>
+<script src="bower_components/pdfjs-dist/build/pdf.worker.js"></script>
+<script src="bower_components/ngImgCrop/compile/minified/ng-img-crop.js"></script>
+<script src="bower_components/angularPrint/angularPrint.js"></script>
+<script src="bower_components/codemirror/lib/codemirror.js"></script>
+<script src="bower_components/angular-ui-codemirror/ui-codemirror.js"></script>
+<script src="bower_components/angular-recaptcha/release/angular-recaptcha.js"></script>
+<script src="bower_components/moment/moment.js"></script>
+<script src="bower_components/sweetalert/dist/sweetalert.min.js"></script>
+<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+<script src="bower_components/angular-input-masks/angular-input-masks-standalone.min.js"></script>
+<script src="bower_components/angular-br-filters/release/angular-br-filters.js"></script>
+<script src="bower_components/summernote/dist/summernote.js"></script>
+<script src="bower_components/angular-pdf/dist/angular-pdf.js"></script>
+<script src="bower_components/angular-moment/angular-moment.js"></script>
+<script src="bower_components/ngSweetAlert/SweetAlert.js"></script>
+<script src="bower_components/angular-summernote/dist/angular-summernote.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
+
+
+<!-- build:js app/app.js  -->
+<!-- inject:js -->
+<script src="app/app.module.js"></script>
+<script src="app/util/util.service.js"></script>
+<script src="app/util/plugins/Blob.js"></script>
+<script src="app/util/dataUtil.service.js"></script>
+<script src="app/main/main.js"></script>
+<script src="app/main/main.controller.js"></script>
+<script src="app/externo/resultado-sorteio/resultado-sorteio-detalhes.controller.js"></script>
+<script src="app/externo/resultado-sorteio/resultado-sorteio-cupons-usuario.controller.js"></script>
+<script src="app/externo/resultado-sorteio/resultado-sorteio-bilhetes-premiados.controller.js"></script>
+<script src="app/externo/resultado-sorteio/resultado-sorteio.js"></script>
+<script src="app/externo/resultado-sorteio/resultado-sorteio.controller.js"></script>
+<script src="app/externo/premio/premio.service.js"></script>
+<script src="app/externo/premio/premio.js"></script>
+<script src="app/externo/premio/premio.controller.js"></script>
+<script src="app/externo/perguntas-respostas/perguntas-respostas.js"></script>
+<script src="app/externo/perguntas-respostas/perguntas-respostas.controller.js"></script>
+<script src="app/externo/legislacao/legislacao.service.js"></script>
+<script src="app/externo/fale-conosco/fale-conosco.js"></script>
+<script src="app/externo/fale-conosco/fale-conosco.controller.js"></script>
+<script src="app/externo/cupom/cupom-detalhe.controller.js"></script>
+<script src="app/externo/cupom/cupom.service.js"></script>
+<script src="app/externo/calendario-sorteio/calendario-sorteio.js"></script>
+<script src="app/externo/calendario-sorteio/calendario-sorteio.controller.js"></script>
+<script src="app/externo/gov-br/gov-br.controller.js"></script>
+<script src="app/externo/gov-br/gov-br.js"></script>
+<script src="app/externo/gov-br/gov-br.service.js"></script>
+<script src="app/error/error.js"></script>
+<script src="app/entities/termo-uso/termo-uso.service.js"></script>
+<script src="app/entities/termo-uso/termo-uso.js"></script>
+<script src="app/entities/termo-uso/termo-uso.controller.js"></script>
+<script src="app/entities/template/template-dialog.controller.js"></script>
+<script src="app/entities/template/template-detail.controller.js"></script>
+<script src="app/entities/template/template.service.js"></script>
+<script src="app/entities/template/template.search.service.js"></script>
+<script src="app/entities/template/template.js"></script>
+<script src="app/entities/template/template.controller.js"></script>
+<script src="app/entities/syncElasticSearch/sync.service.js"></script>
+<script src="app/entities/syncElasticSearch/sync.js"></script>
+<script src="app/entities/syncElasticSearch/sync.controller.js"></script>
+<script src="app/entities/prestadorServicos/servicoPrestador-search.controller.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos-edit.controller.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos-detail.controller.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos.service.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos.search.service.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos.js"></script>
+<script src="app/entities/prestadorServicos/prestadorServicos.controller.js"></script>
+<script src="app/entities/pessoa/pessoa-edit.controller.js"></script>
+<script src="app/entities/pessoa/pessoa-detail.controller.js"></script>
+<script src="app/entities/pessoa/pessoa.service.js"></script>
+<script src="app/entities/pessoa/pessoa.search.service.js"></script>
+<script src="app/entities/pessoa/pessoa.js"></script>
+<script src="app/entities/pessoa/pessoa.controller.js"></script>
+<script src="app/entities/perguntas-respostas/perguntas-respostas.service.js"></script>
+<script src="app/entities/perfilUsuario/perfilUsuario.js"></script>
+<script src="app/entities/perfilUsuario/perfilUsuario.controller.js"></script>
+<script src="app/entities/notasFiscaisRecebidas/notasFiscaisRecebidas.js"></script>
+<script src="app/entities/notasFiscaisRecebidas/notasFiscaisRecebidas.controller.js"></script>
+<script src="app/entities/notaFiscal/notaFiscal.service.js"></script>
+<script src="app/entities/municipio/municipio-search.controller.js"></script>
+<script src="app/entities/municipio/municipio-dialog.controller.js"></script>
+<script src="app/entities/municipio/municipio-detail.controller.js"></script>
+<script src="app/entities/municipio/municipio.service.js"></script>
+<script src="app/entities/municipio/municipio.search.service.js"></script>
+<script src="app/entities/municipio/municipio.js"></script>
+<script src="app/entities/municipio/municipio.controller.js"></script>
+<script src="app/entities/impressaoPdf/impressao.service.js"></script>
+<script src="app/entities/impressaoPdf/impressao.controller.js"></script>
+<script src="app/entities/imagem/imagem.service.js"></script>
+<script src="app/entities/imagem/imagem.search.service.js"></script>
+<script src="app/entities/fale-conosco/fale-conosco.service.js"></script>
+<script src="app/entities/entity.js"></script>
+<script src="app/entities/endereco/endereco.service.js"></script>
+<script src="app/entities/configuracao/configuracao-detail.controller.js"></script>
+<script src="app/entities/configuracao/configuracao.service.js"></script>
+<script src="app/entities/configuracao/configuracao.search.service.js"></script>
+<script src="app/entities/configuracao/configuracao.js"></script>
+<script src="app/entities/comunicado/comunicado-dialog.controller.js"></script>
+<script src="app/entities/comunicado/comunicado.service.js"></script>
+<script src="app/entities/canais-atendimento/canais-atendimento.service.js"></script>
+<script src="app/entities/campanha/regulamento.controller.js"></script>
+<script src="app/entities/campanha/campanha.service.js"></script>
+<script src="app/entities/campanha/campanha.js"></script>
+<script src="app/entities/calendario-sorteio/calendario-sorteio.service.js"></script>
+<script src="app/entities/configuracao-gov-br/configuracao-gov-br.service.js"></script>
+<script src="app/components/util/truncate.filter.js"></script>
+<script src="app/components/util/parse-links.service.js"></script>
+<script src="app/components/util/dateutil.service.js"></script>
+<script src="app/components/util/base64.service.js"></script>
+<script src="app/components/user/user.service.js"></script>
+<script src="app/components/user/user.search.service.js"></script>
+<script src="app/components/notify/notify.service.js"></script>
+<script src="app/components/navbar/navbar.directive.js"></script>
+<script src="app/components/navbar/navbar.controller.js"></script>
+<script src="app/components/loading/loading.directive.js"></script>
+<script src="app/components/language/language.service.js"></script>
+<script src="app/components/language/language.controller.js"></script>
+<script src="app/components/inspinia/sideNavigation.directive.js"></script>
+<script src="app/components/inspinia/minimalizaSidebar.directive.js"></script>
+<script src="app/components/inspinia/jquery.metisMenu.js"></script>
+<script src="app/components/inspinia/inspinia.js"></script>
+<script src="app/components/inspinia/icheck.directive.js"></script>
+<script src="app/components/form/searchBoxCpf.directive.js"></script>
+<script src="app/components/form/searchBox.directive.js"></script>
+<script src="app/components/form/pagination.directive.js"></script>
+<script src="app/components/form/pager.directive.js"></script>
+<script src="app/components/form/onEnter.directive.js"></script>
+<script src="app/components/form/multipleEmails.directive.js"></script>
+<script src="app/components/form/form.directive.js"></script>
+<script src="app/components/form/decimal.directive.js"></script>
+<script src="app/components/form/dateInput.directive.js"></script>
+<script src="app/components/exportador/xls.service.js"></script>
+<script src="app/components/enumerado/enumerado-json.service.js"></script>
+<script src="app/components/enumerado/enumerado.service.js"></script>
+<script src="app/components/enumerado/enum-cache.service.js"></script>
+<script src="app/components/auth/services/register.service.js"></script>
+<script src="app/components/auth/services/password.service.js"></script>
+<script src="app/components/auth/services/activate.service.js"></script>
+<script src="app/components/auth/services/account.service.js"></script>
+<script src="app/components/auth/provider/auth.oauth2.service.js"></script>
+<script src="app/components/auth/principal.service.js"></script>
+<script src="app/components/auth/authority.directive.js"></script>
+<script src="app/components/auth/auth.service.js"></script>
+<script src="app/components/admin/monitoring.service.js"></script>
+<script src="app/components/admin/logs.service.js"></script>
+<script src="app/components/admin/configuration.service.js"></script>
+<script src="app/components/admin/audits.service.js"></script>
+<script src="app/component/pessoa/pessoa-edit.controller.js"></script>
+<script src="app/component/functions-nfse.js"></script>
+<script src="app/app.constants.js"></script>
+<script src="app/admin/user-management/user-management-search-cpf.controller.js"></script>
+<script src="app/admin/user-management/user-management-search.controller.js"></script>
+<script src="app/admin/user-management/user-management-detail.controller.js"></script>
+<script src="app/admin/user-management/user-management.js"></script>
+<script src="app/admin/user-management/user-management.controller.js"></script>
+<script src="app/admin/metrics/metrics.js"></script>
+<script src="app/admin/metrics/metrics.controller.js"></script>
+<script src="app/admin/logs/logs.js"></script>
+<script src="app/admin/logs/logs.controller.js"></script>
+<script src="app/admin/health/health.js"></script>
+<script src="app/admin/health/health.controller.js"></script>
+<script src="app/admin/docs/docs.js"></script>
+<script src="app/admin/configuration/configuration.js"></script>
+<script src="app/admin/configuration/configuration.controller.js"></script>
+<script src="app/admin/audits/audits.js"></script>
+<script src="app/admin/audits/audits.controller.js"></script>
+<script src="app/admin/admin.js"></script>
+<script src="app/account/reset/request/reset.request.js"></script>
+<script src="app/account/reset/request/reset.request.controller.js"></script>
+<script src="app/account/reset/finish/reset.finish.js"></script>
+<script src="app/account/reset/finish/reset.finish.controller.js"></script>
+<script src="app/account/register/register.js"></script>
+<script src="app/account/register/register.controller.js"></script>
+<script src="app/account/password/password.js"></script>
+<script src="app/account/password/password.directive.js"></script>
+<script src="app/account/password/password.controller.js"></script>
+<script src="app/account/logout/logout.js"></script>
+<script src="app/account/logout/logout.controller.js"></script>
+<script src="app/account/login/login.js"></script>
+<script src="app/account/login/login.controller.js"></script>
+<script src="app/account/activate/activate.js"></script>
+<script src="app/account/activate/activate.controller.js"></script>
+<script src="app/account/account.js"></script>
+<!-- endinject -->
+<!-- endbuild -->
+
+
+</body>
+</html>

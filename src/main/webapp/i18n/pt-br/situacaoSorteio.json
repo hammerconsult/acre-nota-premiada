@@ -1,0 +1,9 @@
+{
+    "nfseApp": {
+        "SituacaoSorteio": {
+            "null": "",
+            "REALIZADO": "Realizado",
+            "ABERTO": "Aberto"
+        }
+    }
+}

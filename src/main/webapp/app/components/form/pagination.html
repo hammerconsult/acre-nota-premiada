@@ -1,0 +1,11 @@
+<div class="text-center">
+    <pagination boundary-links="true"
+                total-items="per_page * links.last"
+                ng-model="page"
+                max-size="5"
+                items-per-page="per_page"
+                ng-change="loadPage(page)"
+                class="pagination-sm" previous-text="" next-text=""
+                first-text=""
+                last-text=""></pagination>
+</div>

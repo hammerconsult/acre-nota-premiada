@@ -1,0 +1,88 @@
+<form>
+    <div class="modal-header">
+        <h4 id="cnaeLabel">Detalhes do Bilhete {{cupom.numero}}</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-12 form-group">
+                <div class="col-md-6">
+                    <small>Sorteio</small>
+                    <br>
+                    <strong>{{sorteio.descricao}}</strong>
+                </div>
+
+                <div class="col-md-3">
+                    <small>Data de Início</small>
+                    <br>
+                    <strong>{{sorteio.inicioEmissaoNotaFiscal | date: 'dd/MM/yyyy': '+0000'}}</strong>
+                </div>
+
+                <div class="col-md-3">
+                    <small>Data de Término</small>
+                    <br>
+                    <strong>{{sorteio.fimEmissaoNotaFiscal | date: 'dd/MM/yyyy': '+0000'}}</strong>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-3">
+                    <small>Data do Sorteio</small>
+                    <br>
+                    <strong>{{sorteio.dataSorteio | date: 'dd/MM/yyyy': '+0000'}}</strong>
+                </div>
+            </div>
+            <div class="col-md-12 form-group">
+                <div class="col-md-2">
+                    <small>Número Nfs-e</small>
+                    <br>
+                    <strong>{{cupom.numeroNotaFiscal}}</strong>
+                </div>
+                <div class="col-md-2">
+                    <small>Emissão Nfs-e</small>
+                    <br>
+                    <strong>{{cupom.emissaoNotaFiscal | date: 'dd/MM/yyyy': '+0000'}}</strong>
+                </div>
+                <div class="col-md-6">
+                    <small>Prestador Nfs-e</small>
+                    <br>
+                    <strong>{{cupom.nomeRazaoSocialPrestador}} ({{cupom.cpfCnpjPrestador | brCpfCnpj}})</strong>
+                </div>
+            </div>
+            <div class="col-md-12 m-t-md form-group alert alert-warning text-center"
+                 ng-show="sorteio.situacao == 'ABERTO'">
+                O sorteio ainda não foi realizado.
+            </div>
+            <div class="col-md-12 m-t-md form-group alert alert-warning text-center"
+                 ng-show="sorteio.situacao == 'REALIZADO' && !cupom.premiacao">
+                <strong>Não foi dessa vez!</strong> Esse bilhete não foi premiado
+            </div>
+            <div class="col-md-12 m-t-md form-group alert alert-success"
+                 ng-show="sorteio.situacao == 'REALIZADO' && cupom.premiacao">
+                <div class="col-md-8">
+                    <small>Premiação</small>
+                    <br>
+                    <strong>{{cupom.premiacao.descricao}}</strong>
+                </div>
+                <div class="col-md-2">
+                    <small>Quantidade</small>
+                    <br>
+                    <strong>{{ cupom.premiacao.quantidade}}</strong>
+                </div>
+                <div class="col-md-2">
+                    <small>Valor</small>
+                    <br>
+                    <strong>{{ cupom.premiacao.valor | currency:'R$'}}</strong>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal-footer">
+        <button type="button"
+                ng-click="fechar()"
+                class="btn btn-info">
+            <span class="fa fa-close"></span>&nbsp;
+            <span>Fechar</span>
+        </button>
+
+    </div>
+</form>

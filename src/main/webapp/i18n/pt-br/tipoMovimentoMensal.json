@@ -1,0 +1,10 @@
+{
+    "nfseApp": {
+        "TipoMovimentoMensal" : {
+            "null": "",
+            "NORMAL": "Normal",
+            "RETENCAO": "Rentenção",
+            "INSTITUICAO_FINANCEIRA": "DESIF"
+        }
+    }
+}

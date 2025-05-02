@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="RelatorioCuponsSorteio_Premios" language="groovy" pageWidth="534" pageHeight="752" columnWidth="534" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="c60c38de-32f8-4a13-bc63-33048301d62e">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<field name="descricao" class="java.lang.String"/>
+	<field name="quantidade" class="java.lang.Integer"/>
+	<field name="valor" class="java.math.BigDecimal"/>
+	<variable name="VALOR_TOTAL_PREMIOS" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{valor}.multiply(new BigDecimal($F{quantidade}))]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="31">
+			<staticText>
+				<reportElement x="0" y="0" width="103" height="15" uuid="b8335f7e-4c3f-47a5-b104-4bc06f97b5bd"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Prêmios]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="15" width="334" height="15" uuid="b5950c79-516b-4872-9779-028c8c05d515"/>
+				<textElement>
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Descrição]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="334" y="15" width="100" height="15" uuid="2ed80415-484f-4619-82b1-8c4f22613a27"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Quantidade]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="434" y="15" width="100" height="15" uuid="5aed98ed-bb86-41b0-966c-dd7ee609c823"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total (R$)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="3" y="30" width="531" height="1" uuid="0f6a9399-a257-4b3e-a1c3-2d1ff985d192"/>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="0" y="0" width="334" height="15" uuid="a1bd142b-5e3b-4444-aa15-c602727c616b"/>
+				<textElement>
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{descricao}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="334" y="0" width="100" height="15" uuid="ec333cbb-912f-45f8-b4d8-9040ad83d0ba"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{quantidade}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="434" y="0" width="100" height="15" uuid="72097e1f-b6ee-44f2-8000-7c02241249ab"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{valor}.multiply(new BigDecimal($F{quantidade}))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="15">
+			<staticText>
+				<reportElement x="230" y="0" width="204" height="15" uuid="52e3a059-77c4-4c2b-acbe-cbabf7adb732"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Valor Total dos Prêmios:]]></text>
+			</staticText>
+			<textField pattern="#,##0.00;-#,##0.00">
+				<reportElement x="434" y="0" width="100" height="15" uuid="97a6f397-a1db-43f5-ba1a-150e9815f751"/>
+				<textElement textAlignment="Right">
+					<font fontName="Arial" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{VALOR_TOTAL_PREMIOS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="3" y="0" width="531" height="1" uuid="c6e36cb3-793d-48b8-8031-ebdf7346c262"/>
+			</line>
+		</band>
+	</pageFooter>
+</jasperReport>

@@ -1,0 +1,30 @@
+<nav class="navbar-default navbar-static-side animate fadeInLeft" role="navigation" ng-switch="isAuthenticated">
+    <div class="sidebar-collapse">
+        <ul side-navigation class="nav metismenu m-t-lg" id="side-menu">
+            <li>
+                <a href="#" ui-sref="home" title="Home">
+                    <i class="fa fa-home"></i>
+                    <span class="nav-label">Home</span>
+                </a>
+            </li>
+            <li ng-show="isAuthenticated == true">
+                <a href="#">
+                    <i class="fa fa-user"></i>
+                    <span class="nav-label">{{account.dadosPessoais.nomeRazaoSocial}}</span>
+                    <span class="fa arrow"></span>
+                </a>
+                <ul class="nav metismenu">
+                    <li >
+
+                    </li>
+                    <li ng-if="account.participandoPrograma">
+
+                    </li>
+
+
+                </ul>
+            </li>
+        </ul>
+    </div>
+</nav>
+

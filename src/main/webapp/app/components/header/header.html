@@ -1,0 +1,114 @@
+<div class="header-page text-raleway text-white">
+    <div class="row m-t-lg">
+        <div class="col-md-3 hidden-sm hidden-xs">
+            <div class="col-md-4 hidden-sm hidden-xs m-t-md">
+                <img alt="image"
+                     class="img-responsive"
+                     ng-src="/assets/images/logo-nota.png"/>
+            </div>
+            <div class="col-md-8 m-t-lg">
+                <div ncy-breadcrumb></div>
+                <h3>
+                    {{$state.current.data.pageTitle}}
+                </h3>
+            </div>
+        </div>
+
+        <div class="col-md-6 hidden-sm hidden-xs">
+            <div class="col-md-12 text-center" ng-show="isAuthenticated">
+                <div class="profile-image m-t-md">
+                    <img ng-show="account.imagem" alt="image"
+                         class="rounded-circle circle-border m-b-md"
+                         ng-src="{{account.imagem}}" width="150"/>
+                    <img ng-show="!account.imagem" alt="image"
+                         class="rounded-circle circle-border m-b-md"
+                         ng-src="/assets/images/user-default.jpg" width="150"/>
+                </div>
+            </div>
+
+            <div class="col-md-12 text-center" ng-show="isAuthenticated">
+                <div class="profile-info">
+                    <h2 class="no-margins ">
+                        <b>{{account.dadosPessoais.nomeRazaoSocial}}</b>
+                    </h2>
+                    <p>{{account.dadosPessoais.cpfCnpj | brCpfCnpj}} ({{account.dadosPessoais.email}})</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-3 text-right hidden-sm hidden-xs">
+            <div class="col-md-12 text-right m-t-md">
+                <img alt="image"
+                     class="img-responsive pull-right"
+                     width="200"
+                     ng-src="/assets/images/logo-rb-white.png"/>
+            </div>
+        </div>
+    </div>
+
+
+    <ul class="nav nav-tabs navegador-logado m-t-md" role="tablist">
+        <li>
+            <a class="nav-link" ui-sref="home" title="Voltar ao Home" ng-show="!isAuthenticated">
+                <i class="fa fa-arrow-left"></i>
+                <span>Voltar</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" ui-sref="home" title="Bilhetes" ui-sref-active="active" ng-show="isAuthenticated">
+                <i class="fa fa-tags"></i>
+                <span class="hidden-xs hidden-sm">Meus Bilhetes</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" ui-sref="notasFiscaisRecebidas" title="Minhas Notas" ui-sref-active="active"
+               ng-show="isAuthenticated">
+                <i class="fa fa-qrcode"></i>
+                <span class="hidden-xs hidden-sm">Minhas notas</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link" ui-sref="perfilUsuario" ui-sref-active="active" title="Meu Perfil"
+               ng-show="isAuthenticated">
+                <i class="fa fa-user-circle-o"></i>
+                <span class="hidden-xs hidden-sm"> Meu Perfil</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link hidden-xs hidden-sm" ui-sref="calendario-sorteio" title="Calendário de Sorteios"
+               ui-sref-active="active" ng-show="isAuthenticated">
+                <i class="fa fa-calendar"></i>
+                <span>Calendário de Sorteios</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link hidden-xs hidden-sm" ui-sref="premio" title="Prêmios" ui-sref-active="active"
+               ng-show="isAuthenticated">
+                <i class="fa fa-trophy"></i>
+                <span>Prêmios</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link hidden-xs hidden-sm" ui-sref="resultado-sorteio" title="Resultados dos Sorteios"
+               ui-sref-active="active" ng-show="isAuthenticated">
+                <i class="fa fa-list-ol"></i>
+                <span>Resultados</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link hidden-xs hidden-sm" ui-sref="faleconosco" title="Reclamações"
+               ui-sref-active="active" ng-show="isAuthenticated">
+                <i class="fa fa-bullhorn"></i>
+                <span>Reclamações</span>
+            </a>
+        </li>
+        <li>
+            <a class="nav-link hidden-xs hidden-sm" ui-sref="regulamento" title="Regulamento"
+               ui-sref-active="active" ng-show="isAuthenticated">
+                <i class="fa fa-file"></i>
+                <span>Regulamento</span>
+            </a>
+        </li>
+    </ul>
+
+</div>

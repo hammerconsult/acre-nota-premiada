@@ -1,0 +1,16 @@
+{
+    "nfseApp": {
+        "Roles": {
+            "ROLE_EMPRESA_AIDFE": "Solicitação e consulta de aidfs",
+            "ROLE_EMPRESA_COSIF": "Cadastro e consulta de contas cosif",
+            "ROLE_EMPRESA_NFSE": "Emissão, consulta e impressão de notas fiscais",
+            "ROLE_EMPRESA_DOC_RECEBIDO": "Emissão, consulta e impressão de documentos recebidos",
+            "ROLE_EMPRESA_RPS": "Importação, consulta e geração de nfse por RPS",
+            "ROLE_EMPRESA_DMS": "Declaração, consulta e impressão dos serviços mensais",
+            "ROLE_EMPRESA_LIVRO_FISCAL": "Geração, consulta e impressão dos livros fiscais",
+            "ROLE_EMPRESA_CONTA_CORRENTE": "Consulta e impressão das guias",
+            "ROLE_EMPRESA_TOMADOR": "Cadastro e consulta dos tomadores de serviço",
+            "ROLE_EMPRESA_ADM": "Administrador e edição de dados da empresa"
+        }
+    }
+}

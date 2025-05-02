@@ -1,0 +1,22 @@
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <div class="col-lg-12 m-t-lg p-lg">
+                    <div class="col-lg-3" ng-repeat="registro in premiosPorSorteio">
+                        <div class="widget white-bg  p-lg text-center">
+                            <div class="m-b-md">
+                                <i class="fa fa-trophy fa-4x"></i>
+                                <h1 class="m-xs">{{registro.sorteio.numero}}° sorteio:
+                                    {{registro.sorteio.dataSorteio | date:'dd/MM/yyyy': '+0000'}}</h1>
+                                <h3 ng-repeat="premio in registro.premios" class="font-bold no-margins">
+                                    {{premio.descricao}}
+                                </h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

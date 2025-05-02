@@ -1,0 +1,246 @@
+<style>
+    .cropArea {
+        background: #E4E4E4;
+        overflow: hidden;
+        width: 200px;
+        height: 175px;
+    }
+</style>
+<div class="tabs-container">
+    <div class="tab-content">
+        <div role="tabpanel" class="tab-pane active">
+            <div class="panel-body text-raleway">
+                <form name="form" role="form" ng-submit="save()">
+                    <div class="row">
+                        <div class="col-md-12">
+                            <a class="pull-right text-muted" ui-sref="password" title="Trocar a senha de acesso">
+                                <i class="fa fa-key"></i>
+                                Trocar Senha
+                            </a>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3 text-center">
+                            <div class="cropArea">
+                                <img-crop ng-show="myImage" image="myImage"
+                                          result-image="myCroppedImage"></img-crop>
+
+                                <img alt="image"
+                                     ng-show="!myImage && !usuario.imagem"
+                                     ng-src="/assets/images/user-default.jpg"
+                                     width="175" height="175" style="margin-left: 12.5px; "/>
+
+                                <img alt="image"
+                                     ng-show="usuario.imagem"
+                                     ng-src="{{usuario.imagem}}"
+                                     width="175" height="175" style="margin-left: 12.5px; "/>
+                            </div>
+                            <label for="file-upload"
+                                   class="custom-file-upload">
+                                <span class="fa fa-cloud-upload"></span> Carregar Foto
+                            </label>
+                            <input type="file"
+                                   id="file-upload"
+                                   name="file"
+                                   ngf-select="upload($file)"
+                                   ng-model="arquivo"
+                                   ngf-max-size="15MB"
+                                   accept="image/*">
+
+                        </div>
+                        <div class="col-md-9">
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label for="field_cpf">CPF <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="cpf"
+                                           id="field_cpf"
+                                           ui-br-cpf-mask
+                                           required
+                                           ng-blur="loadByCpfCnpj()"
+                                           ng-model="usuario.dadosPessoais.cpfCnpj">
+
+                                    <div ng-show="form.cpf.$invalid" class="has-error">
+                                        <p class="help-block"
+                                           ng-show="form.cpf.$error.cpf">
+                                            CPF inválido.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-9">
+                                    <label>Nome <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="nome"
+                                           minlength="3" maxlength="50"
+                                           ng-model="usuario.dadosPessoais.nomeRazaoSocial"
+                                           required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-6">
+                                    <label>E-mail <span class="text-danger">*</span></label>
+                                    <input type="email"
+                                           class="form-control"
+                                           name="email"
+                                           required
+                                           ng-model="usuario.dadosPessoais.email"
+                                           minlength="5" maxlength="100">
+
+                                    <div ng-show="form.email.$invalid" class="has-error">
+                                        <p class="help-block"
+                                           ng-show="form.email.$error.email">
+                                            O E-mail é inválido.
+                                        </p>
+                                    </div>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="field_telefone">Data de Nascimento <span
+                                            class="text-danger">*</span></label>
+                                    <input type="date"
+                                           class="form-control"
+                                           name="dataNascimento"
+                                           id="field_data_nascimento"
+                                           required
+                                           ng-model="usuario.dadosPessoais.dataNascimento">
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="field_telefone">Telefone <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="telefone"
+                                           id="field_telefone"
+                                           ui-br-phone-number
+                                           required
+                                           ng-model="usuario.dadosPessoais.telefone">
+                                </div>
+
+                                <div class="col-md-12 m-t-md  text-center">
+                                    <div class="alert alert-warning" ng-if="!account.participandoPrograma">
+                                        Você não está participando do programa Nota Premiada, caso queria voltar
+                                        a participar
+                                        <a ng-click="inverterParticiparPrograma()"
+                                           title="Clique para participar do programa da nota premiada">
+                                            <i class="fa fa-check"></i>
+                                            clique aqui!
+                                        </a>
+                                    </div>
+                                    <div class="alert alert-info" ng-if="account.participandoPrograma">
+
+                                        Você está participando do programa Nota Premiada, caso queria deixar de
+                                        participar
+                                        <a ng-click="inverterParticiparPrograma()"
+                                           ng-if="account.participandoPrograma"
+                                           title="Clique para deixar de participar do programa da nota premiada">
+                                            <i class="fa fa-ban"></i>
+                                            clique aqui!
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <div class="col-md-2">
+                                    <label for="field_cep">CEP <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="cep"
+                                           id="field_cep"
+                                           ui-br-cep-mask
+                                           ng-blur="loadEnderecoByCEP(usuario.dadosPessoais.cep)"
+                                           ng-model="usuario.dadosPessoais.cep"
+                                           required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="field_bairro">Bairro <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="bairro"
+                                           id="field_bairro"
+                                           ng-model="usuario.dadosPessoais.bairro"
+                                           maxlength="255"
+                                           required>
+                                </div>
+                                <div class="col-md-5">
+                                    <label for="field_logradouro">Logradouro <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="logradouro"
+                                           id="field_logradouro"
+                                           ng-model="usuario.dadosPessoais.logradouro"
+                                           maxlength="255"
+                                           required>
+                                </div>
+                                <div class="col-md-2">
+                                    <label for="field_numero">Número <span class="text-danger">*</span></label>
+                                    <input type="text" class="form-control"
+                                           name="numero"
+                                           id="field_numero"
+                                           ng-model="usuario.dadosPessoais.numero"
+                                           maxlength="255"
+                                           required>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-3">
+                                    <label for="field_complemento">Complemento</label>
+                                    <input type="text" class="form-control" name="complemento"
+                                           id="field_complemento"
+                                           ng-model="usuario.dadosPessoais.complemento" maxlength="255">
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="field_bairro">Cidade <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="cidade"
+                                           id="field_cidade"
+                                           ng-model="usuario.dadosPessoais.municipio"
+                                           maxlength="255"
+                                           required>
+                                </div>
+                                <div class="col-md-3">
+                                    <label for="field_uf">UF <span class="text-danger">*</span></label>
+                                    <input type="text"
+                                           class="form-control"
+                                           name="uf"
+                                           id="field_uf"
+                                           ng-model="usuario.dadosPessoais.uf"
+                                           maxlength="2"
+                                           required>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-sm">
+                        <div class="col-md-12">
+                            <span class="text-danger">Os campos anotados com * são obrigatórios.</span>
+                        </div>
+                    </div>
+
+                    <div class="row m-t-sm">
+                        <div class="col-md-12">
+                            <a class="btn btn-success" ui-sref="home">
+                                <i class="fa fa-arrow-left"></i>
+                                Voltar
+                            </a>
+                            <button type="submit"
+                                    ng-disabled="form.$invalid"
+                                    class="btn btn-primary">
+                                <span class="fa fa-save"></span><span> &ensp;Salvar</span>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+

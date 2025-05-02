@@ -1,0 +1,112 @@
+<div class="row p-lg text-raleway">
+    <div class="col-md-3 fadeInLeft animated hidden-sm hidden-xs" id="primeiro-box">
+
+    </div>
+    <div class="col-md-3 fadeInLeft animated hidden-sm hidden-xs" id="segundo-box">
+
+    </div>
+    <div class="col-md-3 fadeInLeft animated hidden-sm hidden-xs" id="terceiro-box">
+        <div class="col-md-12" id="box-info-sorteio">
+        </div>
+        <div class="col-md-12" id="box-peca-sua-nota">
+            <span>PEÇA SUA NOTA E</span><br/>
+            <span>CONCORRA</span>
+        </div>
+        <div class="col-md-12" id="box-valor-premio">
+        </div>
+    </div>
+    <div class="col-md-3 fadeInRight animated" id="box-login">
+        <div class="ibox" style="border: none; margin: 20px">
+            <div class="ibox-content p-lg text-center">
+                <h3>Acesso Pessoal</h3>
+                <form class="form text-left" role="form" ng-submit="login($event)">
+                    <div class="form-group">
+                        <label>CPF</label>
+                        <input type="text" class="form-control" id="username"
+                               placeholder="Digite o CPF" ng-model="username">
+                    </div>
+                    <div class="form-group">
+                        <label>Senha</label>
+                        <input type="password" class="form-control" id="password"
+                               placeholder="Digite a senha"
+                               ng-model="password">
+                    </div>
+                    <button type="submit" class="btn btn-info block full-width m-t-lg">
+                        Entrar
+                    </button>
+                </form>
+                <div class="form-group text-center m-t-sm">
+                    <span class="text-small text-muted">Ainda não tem acesso?</span>
+                    <a class="btn btn-success btn-block" href="#/register">
+                        Registrar uma nova conta
+                    </a>
+                </div>
+                <div class="form-group text-center">
+                    <a href="#/reset/request">
+                        <small>Esqueceu a senha? Clique aqui</small>
+                    </a>
+                </div>
+                <div class="form-group text-center m-t-sm" ng-show="configuracaoGovBr.id">
+                    <a href="{{configuracaoGovBr.urlLogin}}">
+                        <button type="button" class="btn-gov-br">
+                            <span>Entrar com</span>
+                            <span class="sub-title">gov.br</span>
+                        </button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-8 col-md-offset-2 text-center">
+        <div class="widget super-yellow-bg white-rounded-border p-lg" style="margin-top: 0">
+            <a ui-sref="calendario-sorteio">
+                <h2 class="text-uppercase">Confira aqui os bilhetes participantes!</h2>
+            </a>
+        </div>
+    </div>
+    <div class="col-md-8 col-md-offset-2 text-raleway text-center">
+
+    </div>
+
+    <div class="col-md-12 text-raleway text-primary text-center m-t-lg">
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="calendario-sorteio" type="button">
+                <i class="fa fa-calendar"></i>
+            </button>
+            <p class="m-t-sm">Calendário de Sorteios</p>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="premio" type="button">
+                <i class="fa fa-trophy"></i>
+            </button>
+            <p class="m-t-sm">Prêmios</p>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="resultado-sorteio" type="button">
+                <i class="fa fa-list-ol"></i>
+            </button>
+            <p class="m-t-sm">Resultados</p>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="regulamento" type="button">
+                <i class="fa fa-file"></i>
+            </button>
+            <p class="m-t-sm">Regulamento</p>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="faleconosco" type="button">
+                <i class="fa fa-bullhorn"></i>
+            </button>
+            <p class="m-t-sm">Reclamações</p>
+        </div>
+        <div class="col-md-2 col-sm-6 col-xs-6">
+            <button class="btn btn-primary btn-circle btn-lg btn-outline" ui-sref="perguntas-respostas" type="button">
+                <i class="fa fa-comments"></i>
+            </button>
+            <p class="m-t-sm">Informações</p>
+        </div>
+    </div>
+</div>
+
+
